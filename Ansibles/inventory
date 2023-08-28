@@ -1,0 +1,16 @@
+[all_srx_devices]
+192.168.3.101
+192.168.3.102
+192.168.3.103
+192.168.3.104
+
+[srx_internal]
+192.168.3.101
+192.168.3.102
+
+[srx_external]
+192.168.3.103
+192.168.3.104
+
+[all_srx_devices:vars]
+ssh_key_file="~/.ssh/id_rsa"

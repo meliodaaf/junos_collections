@@ -1,0 +1,18 @@
+---
+- name: Junos RPC playbook
+  hosts: 192.168.3.101
+  roles:
+    - Juniper.junos
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: Issue Junos RPC to get config
+    juniper_junos_rpc:
+      ssh_private_key_file: "{{ ssh_key_file }}"
+      rpcs: get-config
+    register: rpc_response
+
+  - name: Print the junos rpc output
+    debug:
+      var: rpc_response.parsed_output.configuration.security.policies.policy

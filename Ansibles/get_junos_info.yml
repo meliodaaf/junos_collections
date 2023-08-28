@@ -1,0 +1,35 @@
+---
+- name: Retrieve inteface information
+  hosts: all
+  roles:
+    - Juniper.junos
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: Get junos device information
+    juniper_junos_command:
+      ssh_private_key_file: "{{ ssh_key_file }}"
+      commands: 
+        - "show version"
+    register: response
+
+  - name: Print Junos Facts
+    debug:
+      msg: "{{ response.stdout_lines }}"
+
+  - name: Perform 3 commands
+    juniper_junos_command:
+      ssh_private_key_file: "{{ ssh_key_file }}"
+      commands: 
+        - "show version"
+        - "show system uptime"
+        - "show interface terse"
+    register: response
+
+  - name: Print Junos Facts
+    debug:
+      var: item.stdout
+    with_items: "{{ response.results }}"
+
+  

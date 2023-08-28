@@ -1,0 +1,26 @@
+---
+- name: Retrieve inteface information
+  hosts: srx_internal
+  roles:
+    - Juniper.junos
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: Retrieve committed interface config
+    juniper_junos_config:
+      ssh_private_key_file: "{{ ssh_key_file }}"
+      retrieve: committed
+      filter: interfaces
+      format: xml
+    register: response
+
+  - name: Print response
+    debug:
+      var: response.config_lines
+
+  - name: copy the output to a local file
+    copy:
+      content: "{{ response.config_lines }}"
+      dest: "output.txt"
+    delegate_to: localhost

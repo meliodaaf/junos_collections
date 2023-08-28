@@ -1,0 +1,22 @@
+---
+- name: Junos Retrieve Facts Ansible Playbook
+  hosts: all
+  roles:
+    - Juniper.junos
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: Get junos device facts
+    juniper_junos_facts:
+      ssh_private_key_file: "{{ ssh_key_file }}"
+    register: junos_facts
+
+  - name: Print Junos Facts
+    debug:
+      msg: "{{ junos_facts }}"
+
+  - name: Print Junos version"
+    debug:
+      var: junos_facts.facts.version
+      

@@ -1,0 +1,19 @@
+---
+proposal:
+    name: PHASE1-PROPOSAL
+    auth_method: pre-shared-keys
+    group: group2
+    encryption_alg: aes-256-cbc
+policy:
+    name: PHASE1-POLICY
+    mode: main
+    pskey: juniper
+gateway:
+    name: HQ
+    ext_interface: ge-0/0/3
+    peer: 172.18.2.1
+    version: v1-only
+services:
+  - ftp
+  - ssh
+  - telnet

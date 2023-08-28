@@ -1,0 +1,16 @@
+set security ike proposal {{proposal.name}} authentication-method {{proposal.auth_method}}
+set security ike proposal {{proposal.name}} dh-group {{proposal.group}}
+set security ike proposal {{proposal.name}} encryption-algorithm {{proposal.encryption_alg}}
+
+set security ike policy {{policy.name}} mode {{policy.mode}}
+set security ike policy {{policy.name}} proposals {{proposal.name}}
+set security ike policy {{policy.name}} pre-shared-key ascii-text {{policy.pskey}}
+
+set security ike gateway {{gateway.name}} external-interface {{gateway.ext_interface}}
+set security ike gateway {{gateway.name}} ike-policy {{policy.name}}
+set security ike gateway {{gateway.name}} address {{gateway.peer}}
+set security ike gateway {{gateway.name}} version {{gateway.version}}
+
+{% for service in services -%}
+set system services {{ service }}
+{% endfor %}

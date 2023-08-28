@@ -1,0 +1,17 @@
+---
+ge:
+    interface: ge-0/0/0
+    unit_num: 0
+    address: 10.0.0.1
+    address_cidr: 24
+
+loopback:
+    unit_num: 0
+    address: 192.168.1.1
+
+bgp:
+    group_name: ext-group
+    bgp_type: external
+    peer_as: 65510
+    my_as: 64700
+    neighbor_ip: 172.18.1.1

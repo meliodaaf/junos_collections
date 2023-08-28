@@ -1,0 +1,13 @@
+---
+bgp:
+    interface: ge-0/0/0
+    unit_num: 0
+    address: 10.0.0.2
+    address_cidr: 24
+    as_num: 64513
+    peer_as: 64512
+    neighbor_ip: 10.0.0.1
+
+loopback:
+    unit_num: 0
+    address: 192.168.1.2

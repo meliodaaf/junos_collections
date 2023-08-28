@@ -1,0 +1,30 @@
+interfaces {
+    {{ge.interface}} {
+        unit {{ge.unit_num}} {
+            family inet {
+                address {{ge.address}}/{{ge.address_cidr}}
+            }
+        }
+    }
+    lo0 {
+        unit {{loopback.unit_num}} {
+            family inet {
+                address {{loopback.address}}/32
+            }
+        }
+    }
+}
+
+routing-options {
+    autonomous-system {{bgp.my_as}}
+}
+
+protocols {
+    bgp {
+        group {{bgp.group_name}} {
+            type {{bgp.bgp_type}};
+            peer-as {{bgp.peer_as}}
+            neighbor {{bgp.neighbor_ip}}
+        }
+    }
+}

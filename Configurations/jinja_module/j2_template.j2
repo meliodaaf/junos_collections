@@ -1,0 +1,31 @@
+interfaces {
+    {{bgp.interface}} {
+        unit {{bgp.unit_num}} {
+            family inet {
+                address {{bgp.address}}/{{bgp.address_cidr}}
+            }
+        }
+    }
+    lo0 {
+        unit {{loopback.unit_num}} {
+            family inet {
+                address {{loopback.address}}/32
+            }
+        }
+    }
+}
+
+routing-options {
+    static {
+        route 0.0.0.0/0 next-hop 192.168.3.1
+    }
+}
+protocols {
+    bgp {
+        group ext-peers {
+            type external;
+            peer-as {{bgp.peer_as}}
+            neighbor {{bgp.neighbor_ip}}
+        }
+    }
+}
